@@ -24,6 +24,16 @@ router.post(
 
 router.get('/list', userController.list);
 
+router.delete(
+  '/delete/:id',
+  celebrate({
+    [Segments.PARAMS]: {
+      id: Joi.string().required(),
+    },
+  }),
+  userController.delete,
+);
+
 router.post(
   '/sessao',
   celebrate({

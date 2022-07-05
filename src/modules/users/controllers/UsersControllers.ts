@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import CreateServiceUsers from '../services/CreateUsersService';
 import ListarAllUsers from '../services/ListarServiceUsers';
+import DeleteUsersService from '../services/DeleteUsersService';
 
 export default class UsersControllers {
   public async create(req: Request, res: Response) {
@@ -19,5 +20,15 @@ export default class UsersControllers {
     const listando = await result.listar();
 
     return res.json(listando);
+  }
+
+  public async delete(req: Request, res: Response) {
+    const { id } = req.params;
+
+    const result = new DeleteUsersService();
+
+    await result.delete({ id });
+
+    return res.json('Deletado com sucesso');
   }
 }
