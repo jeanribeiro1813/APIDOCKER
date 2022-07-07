@@ -6,7 +6,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
-@Entity('inventory_item')
+@Entity('InventoryItem')
 class InventoryItens {
   @PrimaryColumn()
   item_id!: string;

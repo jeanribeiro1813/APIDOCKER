@@ -1,27 +1,36 @@
 import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
-export class CreateTokenUsers1656973712925 implements MigrationInterface {
+export class CreateBillboard1657203242870 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'user_tokens',
+        name: 'Billboard',
         columns: [
           {
-            name: 'id',
+            name: 'BillboardID',
             type: 'uuid',
             isPrimary: true,
-            generationStrategy: 'uuid',
             default: 'uuid_generate_v4()',
           },
           {
-            name: 'token',
-            type: 'uuid',
-            generationStrategy: 'uuid',
-            default: 'uuid_generate_v4()',
+            name: 'width',
+            type: 'varchar',
           },
           {
-            name: 'user_id',
-            type: 'uuid',
+            name: 'height',
+            type: 'varchar',
+          },
+          {
+            name: 'vectorx',
+            type: 'numeric',
+          },
+          {
+            name: 'vectory',
+            type: 'numeric',
+          },
+          {
+            name: 'vectorz',
+            type: 'numeric',
           },
           {
             name: 'created_at',
@@ -34,21 +43,11 @@ export class CreateTokenUsers1656973712925 implements MigrationInterface {
             default: 'now()',
           },
         ],
-        foreignKeys: [
-          {
-            name: 'TokenUser',
-            referencedTableName: 'users',
-            referencedColumnNames: ['id'],
-            columnNames: ['user_id'],
-            onDelete: 'CASCADE',
-            onUpdate: 'CASCADE',
-          },
-        ],
       }),
     );
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('user_tokens');
+    await queryRunner.dropTable('Billboard');
   }
 }

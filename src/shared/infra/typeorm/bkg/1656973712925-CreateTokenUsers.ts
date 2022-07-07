@@ -1,45 +1,27 @@
 import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
-export class InventoryItens1657052869117 implements MigrationInterface {
+export class CreateTokenUsers1656973712925 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'inventory_item',
+        name: 'UserTokens',
         columns: [
           {
-            name: 'item_id',
+            name: 'IdToken',
             type: 'uuid',
             isPrimary: true,
             generationStrategy: 'uuid',
             default: 'uuid_generate_v4()',
           },
           {
-            name: 'display_name',
-            type: 'varchar',
+            name: 'Token',
+            type: 'uuid',
+            generationStrategy: 'uuid',
+            default: 'uuid_generate_v4()',
           },
           {
-            name: 'description',
-            type: 'varchar',
-          },
-          {
-            name: 'icon',
-            type: 'varchar',
-          },
-          {
-            name: 'pickup',
-            type: 'varchar',
-          },
-          {
-            name: 'stack_able',
-            type: 'varchar',
-          },
-          {
-            name: 'price',
-            type: 'int',
-          },
-          {
-            name: 'category',
-            type: 'varchar',
+            name: 'UserIDToken',
+            type: 'uuid',
           },
           {
             name: 'created_at',
@@ -52,11 +34,21 @@ export class InventoryItens1657052869117 implements MigrationInterface {
             default: 'now()',
           },
         ],
+        foreignKeys: [
+          {
+            name: 'TokenUser',
+            referencedTableName: 'User',
+            referencedColumnNames: ['UserID'],
+            columnNames: ['UserIDToken'],
+            onDelete: 'CASCADE',
+            onUpdate: 'CASCADE',
+          },
+        ],
       }),
     );
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('inventory_item');
+    await queryRunner.dropTable('UserTokens');
   }
 }

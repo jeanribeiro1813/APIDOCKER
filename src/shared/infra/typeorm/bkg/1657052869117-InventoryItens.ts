@@ -1,41 +1,40 @@
 import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
-export class CreateUsers1656941852733 implements MigrationInterface {
+export class InventoryItens1657052869117 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.query('CREATE EXTENSION IF NOT EXISTS "uuid-ossp"');
     await queryRunner.createTable(
       new Table({
-        name: 'users',
+        name: 'InventoryItem',
         columns: [
           {
-            name: 'id',
-            type: 'uuid',
+            name: 'itemHash',
+            type: 'varchar',
             isPrimary: true,
-            generationStrategy: 'uuid',
+          },
+          {
+            name: 'item_id',
+            type: 'uuid',
             default: 'uuid_generate_v4()',
           },
           {
-            name: 'name',
+            name: 'displayName',
             type: 'varchar',
           },
           {
-            name: 'email',
-            type: 'varchar',
-            isUnique: true,
+            name: 'description',
+            type: 'text',
           },
           {
-            name: 'password',
+            name: 'icon',
             type: 'varchar',
           },
           {
-            name: 'avatar',
-            type: 'varchar',
-            isNullable: true,
+            name: 'stackable',
+            type: 'boolean',
           },
           {
-            name: 'tp_conta',
+            name: 'category',
             type: 'varchar',
-            isNullable: true,
           },
           {
             name: 'created_at',
@@ -53,6 +52,6 @@ export class CreateUsers1656941852733 implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('users');
+    await queryRunner.dropTable('InventoryItem');
   }
 }
