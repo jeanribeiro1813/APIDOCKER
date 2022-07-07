@@ -29,9 +29,9 @@ export default class CreateSession {
       throw new AppErrors('Incorrect email/password', 404);
     }
 
-    const password_confirmation = compare(UserPassword, user.UserPassword);
+    // const password_confirmation = compare(UserPassword, user.UserPassword);
 
-    if (!password_confirmation) {
+    if (UserPassword !== user.UserPassword) {
       throw new AppErrors('Incorrect email/password', 404);
     }
 

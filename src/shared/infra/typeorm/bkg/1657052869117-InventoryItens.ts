@@ -12,7 +12,7 @@ export class InventoryItens1657052869117 implements MigrationInterface {
             isPrimary: true,
           },
           {
-            name: 'item_id',
+            name: 'itemID',
             type: 'uuid',
             default: 'uuid_generate_v4()',
           },

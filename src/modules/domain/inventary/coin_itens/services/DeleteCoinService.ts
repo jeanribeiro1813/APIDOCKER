@@ -1,5 +1,5 @@
 import { getCustomRepository } from 'typeorm';
-import InventaryItensRepository from '../../../../data/typeorm/repository/InventaryItensRepository';
+import CoinItemRepository from '../../../../data/typeorm/repository/CoinItemRepository';
 import { AppErrors } from '../../../../../shared/errors/AppErrors';
 
 interface IRequest {
@@ -8,7 +8,7 @@ interface IRequest {
 
 export default class DeleteInventary {
   public async delete({ itemHash }: IRequest): Promise<void> {
-    const repository = getCustomRepository(InventaryItensRepository);
+    const repository = getCustomRepository(CoinItemRepository);
 
     const inventary = await repository.findOne({ itemHash });
 

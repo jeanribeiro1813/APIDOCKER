@@ -7,20 +7,20 @@ export default class UsersRepository
   extends Repository<UsersToken>
   implements UsersTokensInterface
 {
-  public async findId(id: string): Promise<UsersToken | undefined> {
-    const result = this.findOne({ where: { id } });
+  public async findId(IdToken: string): Promise<UsersToken | undefined> {
+    const result = this.findOne({ where: { IdToken } });
 
     return result;
   }
 
-  public async findByToken(token: string): Promise<UsersToken | undefined> {
-    const result = this.findOne({ where: { token } });
+  public async findByToken(Token: string): Promise<UsersToken | undefined> {
+    const result = this.findOne({ where: { Token } });
 
     return result;
   }
 
-  public async generate(user_id: string): Promise<UsersToken | undefined> {
-    const result = this.create({ user_id });
+  public async generate(UserIDToken: string): Promise<UsersToken | undefined> {
+    const result = this.create({ UserIDToken });
 
     await this.save(result);
 

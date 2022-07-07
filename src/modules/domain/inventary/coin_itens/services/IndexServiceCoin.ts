@@ -1,17 +1,15 @@
 import { getCustomRepository } from 'typeorm';
-import InventaryItensRepository from '../../../../data/typeorm/repository/InventaryItensRepository';
-import InventaryItens from '../../../../data/typeorm/entities/InventaryItens';
+import CoinItemRepository from '../../../../data/typeorm/repository/CoinItemRepository';
 import { AppErrors } from '../../../../../shared/errors/AppErrors';
+import CoinItem from '../../../../data/typeorm/entities/CoinItem';
 
 interface IRequest {
   itemHash: string;
 }
 
 export default class IndexServiceUsers {
-  public async index({
-    itemHash,
-  }: IRequest): Promise<InventaryItens | AppErrors> {
-    const repository = getCustomRepository(InventaryItensRepository);
+  public async index({ itemHash }: IRequest): Promise<CoinItem | AppErrors> {
+    const repository = getCustomRepository(CoinItemRepository);
 
     const result = await repository.findByHashId(itemHash);
 

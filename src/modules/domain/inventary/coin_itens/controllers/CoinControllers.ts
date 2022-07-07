@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
-import ListInventaryService from '../services/ListInventaryService';
-import CreateInventaryService from '../services/CreateInventaryService';
-import UpdateInventaryService from '../services/UpdateInventaryService';
-import DeleteInventaryService from '../services/DeleteInventaryService';
-import IndexServiceInventary from '../services/IndexServiceInventary';
+import ListCoinService from '../services/ListCoinService';
+import CreateCoinService from '../services/CreateCoinService';
+import UpdateCoinService from '../services/UpdateCoinService';
+import DeleteCoinService from '../services/DeleteCoinService';
+import IndexServiceCoin from '../services/IndexServiceCoin';
 
 export default class UsersControllers {
   public async create(req: Request, res: Response) {
@@ -17,7 +17,7 @@ export default class UsersControllers {
       category,
     } = req.body;
 
-    const result = new CreateInventaryService();
+    const result = new CreateCoinService();
 
     const criado = await result.criar({
       itemHash,
@@ -33,7 +33,7 @@ export default class UsersControllers {
   }
 
   public async list(req: Request, res: Response) {
-    const result = new ListInventaryService();
+    const result = new ListCoinService();
 
     const listando = await result.list();
 
@@ -43,7 +43,7 @@ export default class UsersControllers {
   public async delete(req: Request, res: Response) {
     const { itemHash } = req.params;
 
-    const result = new DeleteInventaryService();
+    const result = new DeleteCoinService();
 
     await result.delete({ itemHash });
 
@@ -53,7 +53,7 @@ export default class UsersControllers {
   public async index(req: Request, res: Response) {
     const { itemHash } = req.params;
 
-    const result = new IndexServiceInventary();
+    const result = new IndexServiceCoin();
 
     const result_id = await result.index({ itemHash });
 
@@ -66,7 +66,7 @@ export default class UsersControllers {
     const { itemID, displayName, description, icon, stackable, category } =
       req.body;
 
-    const result = new UpdateInventaryService();
+    const result = new UpdateCoinService();
 
     const criado = await result.update({
       itemHash,
