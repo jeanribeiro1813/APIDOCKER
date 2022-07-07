@@ -8,26 +8,24 @@ import IndexServiceInventary from '../services/IndexServiceInventary';
 export default class UsersControllers {
   public async create(req: Request, res: Response) {
     const {
-      item_id,
-      display_name,
+      itemHash,
+      itemID,
+      displayName,
       description,
       icon,
-      pickup,
-      stack_able,
-      price,
+      stackable,
       category,
     } = req.body;
 
     const result = new CreateInventaryService();
 
     const criado = await result.criar({
-      item_id,
-      display_name,
+      itemHash,
+      itemID,
+      displayName,
       description,
       icon,
-      pickup,
-      stack_able,
-      price,
+      stackable,
       category,
     });
 
@@ -43,48 +41,40 @@ export default class UsersControllers {
   }
 
   public async delete(req: Request, res: Response) {
-    const { item_id } = req.params;
+    const { itemID } = req.params;
 
     const result = new DeleteInventaryService();
 
-    await result.delete({ item_id });
+    await result.delete({ itemID });
 
     return res.json('Deletado com sucesso');
   }
 
   public async index(req: Request, res: Response) {
-    const { item_id } = req.params;
+    const { itemID } = req.params;
 
     const result = new IndexServiceInventary();
 
-    const result_id = await result.index({ item_id });
+    const result_id = await result.index({ itemID });
 
     return res.json(result_id);
   }
 
   public async update(req: Request, res: Response) {
-    const { item_id } = req.params;
+    const { itemHash } = req.params;
 
-    const {
-      display_name,
-      description,
-      icon,
-      pickup,
-      stack_able,
-      price,
-      category,
-    } = req.body;
+    const { itemID, displayName, description, icon, stackable, category } =
+      req.body;
 
     const result = new UpdateInventaryService();
 
     const criado = await result.update({
-      item_id,
-      display_name,
+      itemHash,
+      itemID,
+      displayName,
       description,
       icon,
-      pickup,
-      stack_able,
-      price,
+      stackable,
       category,
     });
 

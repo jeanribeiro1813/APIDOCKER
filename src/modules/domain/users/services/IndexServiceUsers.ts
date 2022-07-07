@@ -4,14 +4,14 @@ import UsersRepository from '../../../data/typeorm/repository/UsersRepository';
 import { AppErrors } from '../../../../shared/errors/AppErrors';
 
 interface IRequest {
-  id: string;
+  UserID: string;
 }
 
 export class IndexServiceUsers {
-  public async index({ id }: IRequest): Promise<Users | AppErrors> {
+  public async index({ UserID }: IRequest): Promise<Users | AppErrors> {
     const repository = getCustomRepository(UsersRepository);
 
-    const result = await repository.findById(id);
+    const result = await repository.findById(UserID);
 
     if (!result) {
       throw new AppErrors('Não existe esse id', 409);

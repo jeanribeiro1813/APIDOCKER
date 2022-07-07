@@ -12,10 +12,10 @@ const inventaryController = new InventaryControllers();
 router.post('/create', inventaryController.create);
 
 router.put(
-  '/update',
+  '/update/:itemHash',
   celebrate({
     [Segments.PARAMS]: {
-      item_id: Joi.string().required().uuid(),
+      itemHash: Joi.string().required(),
     },
   }),
   inventaryController.update,
@@ -24,20 +24,20 @@ router.put(
 router.get('/list', inventaryController.list);
 
 router.get(
-  '/index/:item_id',
+  '/index/:itemHash',
   celebrate({
     [Segments.PARAMS]: {
-      item_id: Joi.string().required().uuid(),
+      itemHash: Joi.string().required(),
     },
   }),
   inventaryController.index,
 );
 
 router.delete(
-  '/delete/:item_id',
+  '/delete/:itemHash',
   celebrate({
     [Segments.PARAMS]: {
-      item_id: Joi.string().required(),
+      itemHash: Joi.string().required(),
     },
   }),
   inventaryController.delete,

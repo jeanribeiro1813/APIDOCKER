@@ -4,16 +4,16 @@ import InventaryItens from '../../../../data/typeorm/entities/InventaryItens';
 import { AppErrors } from '../../../../../shared/errors/AppErrors';
 
 interface IRequest {
-  item_id: string;
+  itemID: string;
 }
 
 export default class IndexServiceUsers {
   public async index({
-    item_id,
+    itemID,
   }: IRequest): Promise<InventaryItens | AppErrors> {
     const repository = getCustomRepository(InventaryItensRepository);
 
-    const result = await repository.findById(item_id);
+    const result = await repository.findById(itemID);
 
     if (!result) {
       throw new AppErrors('Não existe esse id', 409);

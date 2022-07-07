@@ -7,8 +7,8 @@ import authConfig from '../../../../config/auth';
 import User from '../../../data/typeorm/entities/Users';
 
 interface IRequest {
-  email: string;
-  password: string;
+  UserEmail: string;
+  UserPassword: string;
 }
 
 interface IResponseDTO {
@@ -17,16 +17,19 @@ interface IResponseDTO {
 }
 
 export default class CreateSession {
-  public async session({ email, password }: IRequest): Promise<IResponseDTO> {
+  public async session({
+    UserEmail,
+    UserPassword,
+  }: IRequest): Promise<IResponseDTO> {
     const repository = getCustomRepository(UsersRepository);
 
-    const user = await repository.findByEmail(email);
+    const user = await repository.findByEmail(UserEmail);
 
     if (!user) {
       throw new AppErrors('Incorrect email/password', 404);
     }
 
-    const password_confirmation = compare(password, user.password);
+    const password_confirmation = compare(UserPassword, user.UserPassword);
 
     if (!password_confirmation) {
       throw new AppErrors('Incorrect email/password', 404);
@@ -34,11 +37,11 @@ export default class CreateSession {
 
     const token = sign(
       {
-        id: user.id,
+        id: user.UserID,
       },
       authConfig.jwt.secret,
       {
-        subject: user.id,
+        subject: user.UserID,
         expiresIn: authConfig.jwt.expireIn,
       },
     );

@@ -4,43 +4,40 @@ import { AppErrors } from '../../../../../shared/errors/AppErrors';
 import InventaryItens from '../../../../data/typeorm/entities/InventaryItens';
 
 interface IRequest {
-  item_id: string;
-  display_name: string;
+  itemHash: string;
+  itemID: string;
+  displayName: string;
   description: string;
   icon: string;
-  pickup: string;
-  stack_able: string;
-  price: number;
+  stackable: string;
   category: string;
 }
 
 export default class CreateService {
   public async criar({
-    item_id,
-    display_name,
+    itemHash,
+    itemID,
+    displayName,
     description,
     icon,
-    pickup,
-    stack_able,
-    price,
+    stackable,
     category,
   }: IRequest): Promise<InventaryItens | undefined> {
     const repository = getCustomRepository(InventaryItensRepository);
 
-    const inventary = await repository.findByName(display_name);
+    const inventary = await repository.findByName(displayName);
 
     if (inventary) {
       throw new AppErrors('Existe esse item', 409);
     }
 
     const result = repository.create({
-      item_id,
-      display_name,
+      itemHash,
+      itemID,
+      displayName,
       description,
       icon,
-      pickup,
-      stack_able,
-      price,
+      stackable,
       category,
     });
 

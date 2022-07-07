@@ -15,14 +15,15 @@ profileRouter.put(
   '/update',
   celebrate({
     [Segments.BODY]: {
-      usuario: Joi.string().required(),
-      email: Joi.string().required(),
-      senha: Joi.string().optional(),
-      old_senha: Joi.string(),
-      senha_confirmacao: Joi.string().valid(Joi.ref('senha')).when('senha', {
-        is: Joi.exist(),
-        then: Joi.required(),
-      }),
+      UserEmail: Joi.string().required(),
+      UserPassword: Joi.string().optional(),
+      UserOldPassword: Joi.string(),
+      UserPasswordConfirmation: Joi.string()
+        .valid(Joi.ref('UserPassword'))
+        .when('UserPassword', {
+          is: Joi.exist(),
+          then: Joi.required(),
+        }),
     },
   }),
   profileControllers.update,

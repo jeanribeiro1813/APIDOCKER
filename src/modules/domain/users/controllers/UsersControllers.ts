@@ -6,11 +6,11 @@ import { IndexServiceUsers } from '../services/IndexServiceUsers';
 
 export default class UsersControllers {
   public async create(req: Request, res: Response) {
-    const { id, name, email, password, tp_conta } = req.body;
+    const { UserID, UserEmail, UserPassword } = req.body;
 
     const result = new CreateServiceUsers();
 
-    const criado = await result.criar({ id, name, email, password, tp_conta });
+    const criado = await result.criar({ UserID, UserEmail, UserPassword });
 
     return res.status(200).json(criado);
   }
@@ -24,21 +24,21 @@ export default class UsersControllers {
   }
 
   public async delete(req: Request, res: Response) {
-    const { id } = req.params;
+    const { UserID } = req.params;
 
     const result = new DeleteUsersService();
 
-    await result.delete({ id });
+    await result.delete({ UserID });
 
     return res.json('Deletado com sucesso');
   }
 
   public async index(req: Request, res: Response) {
-    const { id } = req.params;
+    const { UserID } = req.params;
 
     const result = new IndexServiceUsers();
 
-    const result_id = await result.index({ id });
+    const result_id = await result.index({ UserID });
 
     return res.json(result_id);
   }

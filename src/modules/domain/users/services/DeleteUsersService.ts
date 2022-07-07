@@ -3,14 +3,14 @@ import { getCustomRepository } from 'typeorm';
 import UsersRepository from '../../../data/typeorm/repository/UsersRepository';
 
 interface IRequest {
-  id: string;
+  UserID: string;
 }
 
 export default class DeleteProducts {
-  public async delete({ id }: IRequest): Promise<void> {
+  public async delete({ UserID }: IRequest): Promise<void> {
     const deleteProducts = getCustomRepository(UsersRepository);
 
-    const result = await deleteProducts.findOne({ id });
+    const result = await deleteProducts.findOne({ UserID });
 
     if (!result) {
       throw new AppErrors('Não existe esse User', 409);

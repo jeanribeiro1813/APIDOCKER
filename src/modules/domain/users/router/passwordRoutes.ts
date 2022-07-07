@@ -10,7 +10,7 @@ routes.post(
   '/forgot',
   celebrate({
     [Segments.BODY]: {
-      email: Joi.string().required(),
+      UserEmail: Joi.string().required(),
     },
   }),
   user.create,

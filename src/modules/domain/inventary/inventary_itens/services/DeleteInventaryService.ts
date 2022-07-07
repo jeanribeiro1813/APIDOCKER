@@ -3,14 +3,14 @@ import InventaryItensRepository from '../../../../data/typeorm/repository/Invent
 import { AppErrors } from '../../../../../shared/errors/AppErrors';
 
 interface IRequest {
-  item_id: string;
+  itemID: string;
 }
 
 export default class DeleteInventary {
-  public async delete({ item_id }: IRequest): Promise<void> {
+  public async delete({ itemID }: IRequest): Promise<void> {
     const repository = getCustomRepository(InventaryItensRepository);
 
-    const inventary = await repository.findOne({ item_id });
+    const inventary = await repository.findOne({ itemID });
 
     if (!inventary) {
       throw new AppErrors('Não existe esse item', 404);

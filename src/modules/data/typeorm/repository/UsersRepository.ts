@@ -7,18 +7,13 @@ export default class UserRepository
   extends Repository<Users>
   implements UserProtocols
 {
-  public async findByEmail(email: string): Promise<Users | undefined> {
-    const mail = this.findOne({ where: { email } });
+  public async findByEmail(UserEmail: string): Promise<Users | undefined> {
+    const mail = this.findOne({ where: { UserEmail } });
 
     return mail;
   }
-  public async findById(id: string): Promise<Users | undefined> {
-    const index = this.findOne({ where: { id } });
-
-    return index;
-  }
-  public async findByName(name: string): Promise<Users | undefined> {
-    const index = this.findOne({ where: { name } });
+  public async findById(UserID: string): Promise<Users | undefined> {
+    const index = this.findOne({ where: { UserID } });
 
     return index;
   }

@@ -13,11 +13,9 @@ router.post(
   '/create',
   celebrate({
     [Segments.BODY]: {
-      id: Joi.string().uuid().required(),
-      name: Joi.string().required(),
-      email: Joi.string().required(),
-      password: Joi.string().required(),
-      tp_conta: Joi.string().required(),
+      UserID: Joi.string().uuid().required(),
+      UserEmail: Joi.string().required(),
+      UserPassword: Joi.string().required(),
     },
   }),
   userController.create,
@@ -26,20 +24,20 @@ router.post(
 router.get('/list', userController.list);
 
 router.get(
-  '/index/:id',
+  '/index/:UserID',
   celebrate({
     [Segments.PARAMS]: {
-      id: Joi.string().required().uuid(),
+      UserID: Joi.string().required().uuid(),
     },
   }),
   userController.index,
 );
 
 router.delete(
-  '/delete/:id',
+  '/delete/:UserID',
   celebrate({
     [Segments.PARAMS]: {
-      id: Joi.string().required(),
+      UserID: Joi.string().required(),
     },
   }),
   userController.delete,
@@ -49,8 +47,8 @@ router.post(
   '/sessao',
   celebrate({
     [Segments.BODY]: {
-      email: Joi.string().required(),
-      password: Joi.string().required(),
+      UserEmail: Joi.string().required(),
+      UserPassword: Joi.string().required(),
     },
   }),
   sessaoController.execute,

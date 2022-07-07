@@ -3,11 +3,11 @@ import SessionServiceUsers from '../services/SessionServiceUsers';
 
 export default class Sessao {
   public async execute(req: Request, res: Response) {
-    const { email, password } = req.body;
+    const { UserEmail, UserPassword } = req.body;
 
     const sessao = new SessionServiceUsers();
 
-    const result = await sessao.session({ email, password });
+    const result = await sessao.session({ UserEmail, UserPassword });
 
     return res.json(result);
   }

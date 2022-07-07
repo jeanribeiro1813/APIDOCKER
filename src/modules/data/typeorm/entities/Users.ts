@@ -6,25 +6,16 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
-@Entity('users')
+@Entity('User')
 class User {
   @PrimaryColumn('uuid')
-  id!: string;
+  UserID!: string;
 
   @Column()
-  name!: string;
+  UserEmail!: string;
 
   @Column()
-  email!: string;
-
-  @Column()
-  password!: string;
-
-  @Column()
-  avatar!: string;
-
-  @Column()
-  tp_conta!: string;
+  UserPassword!: string;
 
   @CreateDateColumn()
   created_at!: Date;

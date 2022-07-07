@@ -9,10 +9,13 @@ import {
 @Entity('InventoryItem')
 class InventoryItens {
   @PrimaryColumn()
-  item_id!: string;
+  itemHash!: string;
+
+  @Column('uuid')
+  itemID!: string;
 
   @Column()
-  display_name!: string;
+  displayName!: string;
 
   @Column()
   description!: string;
@@ -21,13 +24,7 @@ class InventoryItens {
   icon!: string;
 
   @Column()
-  pickup!: string;
-
-  @Column()
-  stack_able!: string;
-
-  @Column()
-  price!: number;
+  stackable!: string;
 
   @Column()
   category!: string;

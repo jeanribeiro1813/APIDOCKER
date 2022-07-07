@@ -5,24 +5,20 @@ import { AppErrors } from '../../../../shared/errors/AppErrors';
 import { hash } from 'bcryptjs';
 
 interface IRequest {
-  id: string;
-  name: string;
-  email: string;
-  password: string;
-  tp_conta: string;
+  UserID: string;
+  UserEmail: string;
+  UserPassword: string;
 }
 
 export default class CreateService {
   public async criar({
-    id,
-    name,
-    email,
-    password,
-    tp_conta,
+    UserID,
+    UserEmail,
+    UserPassword,
   }: IRequest): Promise<Users | undefined> {
     const repository = getCustomRepository(UsersRepository);
 
-    const user = await repository.findByName(name);
+    const user = await repository.findByEmail(UserEmail);
 
     if (user) {
       throw new AppErrors('Esse Usuario já exist', 409);
@@ -31,11 +27,9 @@ export default class CreateService {
     // const hashed = await hash(password, 8);
 
     const usuario = repository.create({
-      id,
-      name,
-      email,
-      password,
-      tp_conta,
+      UserID,
+      UserEmail,
+      UserPassword,
     });
 
     await repository.save(usuario);

@@ -4,41 +4,38 @@ import { AppErrors } from '../../../../../shared/errors/AppErrors';
 import InventaryItens from '../../../../data/typeorm/entities/InventaryItens';
 
 interface IRequest {
-  item_id: string;
-  display_name: string;
+  itemHash: string;
+  itemID: string;
+  displayName: string;
   description: string;
   icon: string;
-  pickup: string;
-  stack_able: string;
-  price: number;
+  stackable: string;
   category: string;
 }
 
 export default class UpdateInventaryService {
   public async update({
-    item_id,
-    display_name,
+    itemHash,
+    itemID,
+    displayName,
     description,
     icon,
-    pickup,
-    stack_able,
-    price,
+    stackable,
     category,
   }: IRequest): Promise<InventaryItens | AppErrors> {
     const repository = getCustomRepository(InventaryItensRepository);
 
-    const invent = await repository.findById(item_id);
+    const invent = await repository.findByHashId(itemHash);
 
     if (!invent) {
       throw new AppErrors('Não existe esse item', 404);
     }
 
-    invent.display_name = display_name ? display_name : invent.display_name;
+    invent.itemID = itemID ? itemID : invent.itemID;
+    invent.displayName = displayName ? displayName : invent.displayName;
     invent.description = description ? description : invent.description;
     invent.icon = icon ? icon : invent.icon;
-    invent.pickup = pickup ? pickup : invent.pickup;
-    invent.stack_able = stack_able ? stack_able : invent.stack_able;
-    invent.price = price ? price : invent.price;
+    invent.stackable = stackable ? stackable : invent.stackable;
     invent.category = category ? category : invent.category;
 
     const result = await repository.save(invent);

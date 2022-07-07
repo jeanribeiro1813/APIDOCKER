@@ -14,15 +14,15 @@ export default class InventaryItensRepository
 
     return categoria;
   }
-  public async findById(item_id: string): Promise<InventaryItens | undefined> {
-    const index = this.findOne({ where: { item_id } });
+  public async findById(itemID: string): Promise<InventaryItens | undefined> {
+    const index = this.findOne({ where: { itemID } });
 
     return index;
   }
   public async findByName(
-    display_name: string,
+    displayName: string,
   ): Promise<InventaryItens | undefined> {
-    const index = this.findOne({ where: { display_name } });
+    const index = this.findOne({ where: { displayName } });
 
     return index;
   }
@@ -31,5 +31,13 @@ export default class InventaryItensRepository
     const all = this.find({});
 
     return all;
+  }
+
+  public async findByHashId(
+    itemHash: string,
+  ): Promise<InventaryItens | undefined> {
+    const hash = this.findOne({ where: { itemHash } });
+
+    return hash;
   }
 }

@@ -6,22 +6,22 @@ import { isAfter, addHours } from 'date-fns';
 import { hash } from 'bcryptjs';
 
 interface IRequest {
-  token: string;
-  password: string;
+  Token: string;
+  UserPassword: string;
 }
 
 export default class ResetPasswordService {
-  public async execute({ token, password }: IRequest): Promise<void> {
+  public async execute({ Token, UserPassword }: IRequest): Promise<void> {
     const userRepository = getCustomRepository(UsersRepository);
     const userTokenRepository = getCustomRepository(UserTokensRepository);
 
-    const userToken = await userTokenRepository.findByToken(token);
+    const userToken = await userTokenRepository.findByToken(Token);
 
     if (!userToken) {
       throw new AppErrors('User Token does not exists', 404);
     }
 
-    const user = await userRepository.findById(userToken.user_id);
+    const user = await userRepository.findById(userToken.UserIDToken);
 
     if (!user) {
       throw new AppErrors('User does not exists.', 404);
@@ -36,7 +36,7 @@ export default class ResetPasswordService {
     }
 
     // user.password = await hash(password, 8);
-    user.password = password;
+    user.UserPassword = UserPassword;
 
     await userRepository.save(user);
   }
