@@ -16,6 +16,7 @@ router.post(
       UserID: Joi.string().uuid().required(),
       UserEmail: Joi.string().required(),
       UserPassword: Joi.string().required(),
+      TpConta: Joi.string().required(),
     },
   }),
   userController.create,

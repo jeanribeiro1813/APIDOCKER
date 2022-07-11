@@ -6,11 +6,16 @@ import { IndexServiceUsers } from '../services/IndexServiceUsers';
 
 export default class UsersControllers {
   public async create(req: Request, res: Response) {
-    const { UserID, UserEmail, UserPassword } = req.body;
+    const { UserID, UserEmail, UserPassword, TpConta } = req.body;
 
     const result = new CreateServiceUsers();
 
-    const criado = await result.criar({ UserID, UserEmail, UserPassword });
+    const criado = await result.criar({
+      UserID,
+      UserEmail,
+      UserPassword,
+      TpConta,
+    });
 
     return res.status(200).json(criado);
   }

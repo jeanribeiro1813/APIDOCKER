@@ -34,6 +34,6 @@ app.use(
   },
 );
 
-app.listen(3222, () => {
-  console.log('Entrou no servidor 3222');
+app.listen(3225, () => {
+  console.log('Entrou no servidor 3225');
 });

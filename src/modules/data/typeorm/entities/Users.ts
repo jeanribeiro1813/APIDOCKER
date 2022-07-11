@@ -17,6 +17,9 @@ class User {
   @Column()
   UserPassword!: string;
 
+  @Column()
+  TpConta!: string;
+
   @CreateDateColumn()
   created_at!: Date;
 

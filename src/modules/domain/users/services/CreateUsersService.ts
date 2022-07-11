@@ -2,12 +2,12 @@ import { getCustomRepository } from 'typeorm';
 import Users from '../../../data/typeorm/entities/Users';
 import UsersRepository from '../../../data/typeorm/repository/UsersRepository';
 import { AppErrors } from '../../../../shared/errors/AppErrors';
-import { hash } from 'bcryptjs';
 
 interface IRequest {
   UserID: string;
   UserEmail: string;
   UserPassword: string;
+  TpConta: string;
 }
 
 export default class CreateService {
@@ -15,6 +15,7 @@ export default class CreateService {
     UserID,
     UserEmail,
     UserPassword,
+    TpConta,
   }: IRequest): Promise<Users | undefined> {
     const repository = getCustomRepository(UsersRepository);
 
@@ -30,6 +31,7 @@ export default class CreateService {
       UserID,
       UserEmail,
       UserPassword,
+      TpConta,
     });
 
     await repository.save(usuario);
