@@ -1,7 +1,6 @@
 import { Router } from 'express';
 import BillboardFeefControllers from '../controllers/BillboardFeefControllers';
 import { celebrate, Joi, Segments } from 'celebrate';
-import isAutentication from '../../../../../shared/middlewares/isAutentication';
 
 const router = Router();
 

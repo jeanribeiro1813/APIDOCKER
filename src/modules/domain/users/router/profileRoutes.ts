@@ -2,12 +2,9 @@ import { Router } from 'express';
 
 import ProfileController from '../controllers/ProfileControllers';
 import { celebrate, Joi, Segments } from 'celebrate';
-import isAutenticacion from '../../../../shared/middlewares/isAutentication';
 
 const profileRouter = Router();
 const profileControllers = new ProfileController();
-
-profileRouter.use(isAutenticacion);
 
 profileRouter.get('/show', profileControllers.show);
 

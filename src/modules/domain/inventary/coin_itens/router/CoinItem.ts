@@ -1,11 +1,8 @@
 import { Router } from 'express';
 import CoinControllers from '../controllers/CoinControllers';
 import { celebrate, Joi, Segments } from 'celebrate';
-import isAutentication from '../../../../../shared/middlewares/isAutentication';
 
 const router = Router();
-
-router.use(isAutentication);
 
 const inventaryController = new CoinControllers();
 

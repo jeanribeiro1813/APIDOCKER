@@ -1,11 +1,8 @@
 import { Router } from 'express';
 import BillboardControllers from '../controllers/BillboardControllers';
 import { celebrate, Joi, Segments } from 'celebrate';
-import isAutentication from '../../../../../shared/middlewares/isAutentication';
 
 const router = Router();
-
-router.use(isAutentication);
 
 const billboardController = new BillboardControllers();
 
