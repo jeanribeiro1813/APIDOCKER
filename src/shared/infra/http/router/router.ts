@@ -8,6 +8,7 @@ import InventaryRouter from '../../../../modules/domain/inventary/inventary/rout
 import InventaryCreateRouter from '../../../../modules/domain/inventary/inventary/router/inventaryCreateRouter';
 import billboardRouter from '../../../../modules/domain/inventary/billboard/router/BillboardRouter';
 import billboardfeedRouter from '../../../../modules/domain/inventary/billboardfeed/router/BillboardFeedRouter';
+import messages from '../../../../modules/domain/messages/router/MessageRouter';
 
 const router = Router();
 
@@ -21,5 +22,7 @@ router.use('/inventory', InventaryRouter);
 router.use('/inventorycreate', InventaryCreateRouter);
 router.use('/billboard', billboardRouter);
 router.use('/billboardfeed', billboardfeedRouter);
+router.use('/messages', messages);
+
 
 export default router;
