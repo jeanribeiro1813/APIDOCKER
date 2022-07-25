@@ -8,10 +8,15 @@ interface IRequest {
 }
 
 export default class IndexServiceUsers {
-  public async index({ idRemetente }: IRequest): Promise<Messages | AppErrors> {
+  public async index({
+    idRemetente,
+  }: IRequest): Promise<Messages[] | AppErrors> {
     const repository = getCustomRepository(MessagesRepository);
 
-    const result = await repository.findById(idRemetente);
+    const result = await repository.find({
+      where: { idRemetente },
+      relations: ['user'],
+    });
 
     if (!result) {
       throw new AppErrors('Não existe esse id', 409);

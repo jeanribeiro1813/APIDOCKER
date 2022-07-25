@@ -23,7 +23,7 @@ class Messages {
   @Column()
   messages!: string;
 
-  // @JoinColumn({ name: 'idRemetente', destinatario: 'IdDestinatário' })
+  @JoinColumn({ name: 'idRemetente' })
   @ManyToOne(() => User)
   user!: User;
 

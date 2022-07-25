@@ -24,5 +24,4 @@ router.use('/billboard', billboardRouter);
 router.use('/billboardfeed', billboardfeedRouter);
 router.use('/messages', messages);
 
-
 export default router;
