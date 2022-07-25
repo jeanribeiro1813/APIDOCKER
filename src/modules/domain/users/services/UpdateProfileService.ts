@@ -9,6 +9,7 @@ interface IRequest {
   UserEmail: string;
   UserPassword?: string;
   UserOldPassword?: string;
+  TpConta?: string;
 }
 
 class UpdateShowProfileService {
@@ -17,6 +18,7 @@ class UpdateShowProfileService {
     UserEmail,
     UserPassword,
     UserOldPassword,
+    TpConta,
   }: IRequest): Promise<Users | AppErrors> {
     const userUpdate = getCustomRepository(UsersRepository);
 
@@ -50,6 +52,7 @@ class UpdateShowProfileService {
     }
 
     user.UserEmail = UserEmail ? UserEmail : user.UserEmail;
+    user.TpConta = TpConta ? TpConta : user.TpConta;
 
     await userUpdate.save(user);
 

@@ -7,6 +7,7 @@ import coinRouter from '../../../../modules/domain/inventary/coin_itens/router/C
 import InventaryRouter from '../../../../modules/domain/inventary/inventary/router/InventaryRouter';
 import InventaryCreateRouter from '../../../../modules/domain/inventary/inventary/router/inventaryCreateRouter';
 import billboardRouter from '../../../../modules/domain/inventary/billboard/router/BillboardRouter';
+import billboardfeedRouter from '../../../../modules/domain/inventary/billboardfeed/router/BillboardFeedRouter';
 
 const router = Router();
 
@@ -19,5 +20,6 @@ router.use('/coin', coinRouter);
 router.use('/inventory', InventaryRouter);
 router.use('/inventorycreate', InventaryCreateRouter);
 router.use('/billboard', billboardRouter);
+router.use('/billboardfeed', billboardfeedRouter);
 
 export default router;

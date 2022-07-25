@@ -25,7 +25,7 @@ export default class ProfileController {
   public async update(request: Request, response: Response): Promise<Response> {
     const user_id = request.user.id;
 
-    const { UserEmail, UserPassword, UserOldPassword } = request.body;
+    const { UserEmail, UserPassword, UserOldPassword, TpConta } = request.body;
 
     const updateFuncao = new UpdateShowProfileService();
 
@@ -34,6 +34,7 @@ export default class ProfileController {
       UserEmail,
       UserPassword,
       UserOldPassword,
+      TpConta,
     });
 
     return response.json('Troca de Senha Realizada com sucesso');

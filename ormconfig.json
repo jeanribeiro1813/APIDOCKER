@@ -4,7 +4,7 @@
   "port": 5432,
   "username": "postgres",
   "password": "docker",
-  "database": "apiblock",
+  "database": "apiblockTeste",
   "$schema": "public",
   "entities": [
     "./src/modules/data/typeorm/entities/*.ts"
