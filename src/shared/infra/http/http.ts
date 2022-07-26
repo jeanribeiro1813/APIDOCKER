@@ -8,7 +8,7 @@ import { AppErrors } from '../../errors/AppErrors';
 import { errors } from 'celebrate';
 import '../../../modules/data/typeorm';
 import http from 'http';
-import { Server } from 'socket.io';
+import { Server, Socket } from 'socket.io';
 import path from 'path';
 
 const app = express();

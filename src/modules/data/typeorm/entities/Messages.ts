@@ -14,16 +14,16 @@ class Messages {
   @PrimaryColumn('uuid')
   IdMessages!: string;
 
-  @Column('uuid')
-  IdDestinatário!: string;
+  @Column()
+  Sala!: string;
 
   @Column('uuid')
-  idRemetente!: string;
+  IdRemetente!: string;
 
   @Column()
   messages!: string;
 
-  @JoinColumn({ name: 'idRemetente' })
+  @JoinColumn({ name: 'IdRemetente' })
   @ManyToOne(() => User)
   user!: User;
 

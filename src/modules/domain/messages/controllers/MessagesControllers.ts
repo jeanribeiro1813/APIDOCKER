@@ -1,39 +1,37 @@
 import { Request, Response } from 'express';
 import CreateMessagesService from '../services/CreateMessagesService';
-import DestinatarioService from '../services/DestinatarioService';
 import RemetenteService from '../services/RemetenteService';
+import ListMessagesService from '../services/ListMessagesService';
 
 export default class UsersControllers {
   public async create(req: Request, res: Response) {
-    const { IdDestinatário, idRemetente, messages } = req.body;
+    const { Sala, IdRemetente, messages } = req.body;
 
     const result = new CreateMessagesService();
 
     const criado = await result.criar({
-      IdDestinatário,
-      idRemetente,
+      Sala,
+      IdRemetente,
       messages,
     });
 
     return res.json(criado);
   }
 
-  public async indexDest(req: Request, res: Response) {
-    const { IdDestinatário } = req.params;
+  public async indexReme(req: Request, res: Response) {
+    const { IdRemetente } = req.params;
 
-    const result = new DestinatarioService();
+    const result = new RemetenteService();
 
-    const result_id = await result.index({ IdDestinatário });
+    const result_id = await result.index({ IdRemetente });
 
     return res.json(result_id);
   }
 
-  public async indexReme(req: Request, res: Response) {
-    const { idRemetente } = req.params;
+  public async list(req: Request, res: Response) {
+    const result = new ListMessagesService();
 
-    const result = new RemetenteService();
-
-    const result_id = await result.index({ idRemetente });
+    const result_id = await result.list();
 
     return res.json(result_id);
   }

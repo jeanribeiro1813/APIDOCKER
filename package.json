@@ -33,6 +33,7 @@
   },
   "dependencies": {
     "@types/socket.io": "^3.0.2",
+    "axios": "^0.27.2",
     "bcryptjs": "^2.4.3",
     "celebrate": "^15.0.1",
     "cors": "^2.8.5",

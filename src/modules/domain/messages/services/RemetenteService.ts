@@ -4,17 +4,17 @@ import { AppErrors } from '../../../../shared/errors/AppErrors';
 import Messages from '../../../data/typeorm/entities/Messages';
 
 interface IRequest {
-  idRemetente: string;
+  IdRemetente: string;
 }
 
 export default class IndexServiceUsers {
   public async index({
-    idRemetente,
+    IdRemetente,
   }: IRequest): Promise<Messages[] | AppErrors> {
     const repository = getCustomRepository(MessagesRepository);
 
     const result = await repository.find({
-      where: { idRemetente },
+      where: { IdRemetente },
       relations: ['user'],
     });
 

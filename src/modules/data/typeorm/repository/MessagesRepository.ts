@@ -7,13 +7,13 @@ export default class MessagesRepository
   extends Repository<Messages>
   implements MessagesProtocols
 {
-  findByIdRemetente(idRemetente: string): Promise<Messages | undefined> {
-    const index = this.findOne({ where: { idRemetente } });
+  findByIdRemetente(IdRemetente: string): Promise<Messages | undefined> {
+    const index = this.findOne({ where: { IdRemetente } });
 
     return index;
   }
-  findByIdDestinatario(IdDestinatário: string): Promise<Messages | undefined> {
-    const index = this.findOne({ where: { IdDestinatário } });
+  findBySala(Sala: string): Promise<Messages | undefined> {
+    const index = this.findOne({ where: { Sala } });
 
     return index;
   }

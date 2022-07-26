@@ -14,12 +14,11 @@ export class CreateMensagem1658783374563 implements MigrationInterface {
             default: 'uuid_generate_v4()',
           },
           {
-            name: 'IdDestinatário',
-            type: 'uuid',
-            isNullable: true,
+            name: 'Sala',
+            type: 'varchar',
           },
           {
-            name: 'idRemetente',
+            name: 'IdRemetente',
             type: 'uuid',
             isNullable: true,
           },
@@ -40,18 +39,10 @@ export class CreateMensagem1658783374563 implements MigrationInterface {
         ],
         foreignKeys: [
           {
-            name: 'IdDestinatarioMessages',
-            referencedTableName: 'User',
-            referencedColumnNames: ['UserID'],
-            columnNames: ['IdDestinatário'],
-            onDelete: 'CASCADE',
-            onUpdate: 'CASCADE',
-          },
-          {
             name: 'IdRemetenteMessages',
             referencedTableName: 'User',
             referencedColumnNames: ['UserID'],
-            columnNames: ['idRemetente'],
+            columnNames: ['IdRemetente'],
             onDelete: 'CASCADE',
             onUpdate: 'CASCADE',
           },
