@@ -8,7 +8,7 @@ import { AppErrors } from '../../errors/AppErrors';
 import { errors } from 'celebrate';
 import '../../../modules/data/typeorm';
 import http from 'http';
-import { Server, Socket } from 'socket.io';
+import { Server } from 'socket.io';
 import path from 'path';
 
 const app = express();
@@ -21,7 +21,8 @@ app.use(routes);
 
 app.use(errors());
 
-app.use(express.static(path.join(__dirname, 'public')));
+app.use('/chat', express.static(path.join(__dirname, './messages/public')));
+// app.use('/multiplayer', express.static(path.join(__dirname, './messages/public')));
 
 app.use(
   (error: Error, request: Request, response: Response, next: NextFunction) => {

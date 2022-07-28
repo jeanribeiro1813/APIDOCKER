@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { io } from '../http';
 import { Response, Request } from 'express';
 import CreateMessagesService from '../../../../modules/domain/messages/services/CreateMessagesService';
