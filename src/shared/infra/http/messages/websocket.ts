@@ -18,6 +18,7 @@ const users: RoomUser[] = [];
 const messages: Message[] = [];
 
 io.on('connection', socket => {
+  console.log('Conectado com Sucesso SOCKET');
   socket.on('select_room', (data, callback) => {
     socket.join(data.room);
 
