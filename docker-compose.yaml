@@ -8,7 +8,7 @@ services:
       - node-network
 
     volumes:
-      - .docker/node:/app
+      - .docker/node:/home/app
     container_name: apiblock-app
     entrypoint: dockerize -wait tcp://db:5432 -timeout 20s docker-entrypoint.sh
 

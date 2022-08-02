@@ -6,6 +6,7 @@ temp/
 .env
 coverage
 dist
+.docker
 
 uploads/*
 !uploads/.gitkeep
