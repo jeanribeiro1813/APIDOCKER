@@ -1,29 +1,34 @@
 import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
-export class CreateMensagem1658783374563 implements MigrationInterface {
+export class TableFriends1659702299665 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'Messages',
+        name: 'Friends',
         columns: [
           {
-            name: 'IdMessages',
+            name: 'Id',
             type: 'uuid',
             isPrimary: true,
             generationStrategy: 'uuid',
             default: 'uuid_generate_v4()',
           },
           {
-            name: 'Sala',
-            type: 'varchar',
-          },
-          {
-            name: 'IdRemetente',
+            name: 'IdUser',
             type: 'uuid',
             isNullable: true,
           },
           {
-            name: 'messages',
+            name: 'IdFriend',
+            type: 'uuid',
+            isNullable: true,
+          },
+          {
+            name: 'EmailUser',
+            type: 'varchar',
+          },
+          {
+            name: 'status',
             type: 'varchar',
           },
           {
@@ -39,10 +44,26 @@ export class CreateMensagem1658783374563 implements MigrationInterface {
         ],
         foreignKeys: [
           {
-            name: 'IdRemetenteMessages',
+            name: 'UserId',
             referencedTableName: 'User',
             referencedColumnNames: ['UserID'],
-            columnNames: ['IdRemetente'],
+            columnNames: ['IdUser'],
+            onDelete: 'CASCADE',
+            onUpdate: 'CASCADE',
+          },
+          {
+            name: 'FriendsId',
+            referencedTableName: 'User',
+            referencedColumnNames: ['UserID'],
+            columnNames: ['IdFriend'],
+            onDelete: 'CASCADE',
+            onUpdate: 'CASCADE',
+          },
+          {
+            name: 'EmailUser',
+            referencedTableName: 'User',
+            referencedColumnNames: ['UserEmail'],
+            columnNames: ['EmailUser'],
             onDelete: 'CASCADE',
             onUpdate: 'CASCADE',
           },
@@ -52,6 +73,6 @@ export class CreateMensagem1658783374563 implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('Messages');
+    await queryRunner.dropTable('Friends');
   }
 }
