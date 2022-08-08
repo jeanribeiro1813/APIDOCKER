@@ -2,10 +2,7 @@ import { getCustomRepository } from 'typeorm';
 import FriendsRepository from '../../../data/typeorm/repository/FriendsRepository';
 import { AppErrors } from '../../../../shared/errors/AppErrors';
 import Friends from '../../../data/typeorm/entities/Friends';
-<<<<<<< HEAD
 import RedisCache from '../../../../shared/cache/Redischace';
-=======
->>>>>>> develop
 
 interface IRequest {
   IdUser: string;
@@ -28,12 +25,9 @@ export default class CreateService {
     if (criado) {
       throw new AppErrors('Você já adicionou esse pessoa como amigo', 409);
     }
-<<<<<<< HEAD
 
     const redisCache = new RedisCache();
 
-=======
->>>>>>> develop
     const result = repository.create({
       IdUser,
       IdFriend,
@@ -41,11 +35,8 @@ export default class CreateService {
       status,
     });
 
-<<<<<<< HEAD
     await redisCache.invalidation('api-block-FRIENDS');
 
-=======
->>>>>>> develop
     await repository.save(result);
 
     return result;
