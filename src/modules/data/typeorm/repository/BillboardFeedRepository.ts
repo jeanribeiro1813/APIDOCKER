@@ -23,7 +23,7 @@ export default class BillboardFeedRepository
     return index;
   }
 
-  public async findAll(): Promise<BillboardFeed[] | undefined> {
+  public async findAll(): Promise<BillboardFeed[]> {
     const all = this.find({});
 
     return all;

@@ -27,7 +27,7 @@ export default class CustomerItemRepository
     return index;
   }
 
-  public async findAll(): Promise<CustomerItem[] | undefined> {
+  public async findAll(): Promise<CustomerItem[]> {
     const all = this.find({});
 
     return all;

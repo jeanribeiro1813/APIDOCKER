@@ -5,5 +5,5 @@ export interface CoinItemProtocols {
   findById(itemID: string): Promise<CoinItem | undefined>;
   findByName(displayName: string): Promise<CoinItem | undefined>;
   findByCategory(category: string): Promise<CoinItem | undefined>;
-  findAll(): Promise<CoinItem[] | undefined>;
+  findAll(): Promise<CoinItem[]>;
 }

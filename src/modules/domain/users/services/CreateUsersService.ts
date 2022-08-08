@@ -2,6 +2,7 @@ import { getCustomRepository } from 'typeorm';
 import Users from '../../../data/typeorm/entities/Users';
 import UsersRepository from '../../../data/typeorm/repository/UsersRepository';
 import { AppErrors } from '../../../../shared/errors/AppErrors';
+import RedisCache from '../../../../shared/cache/Redischace';
 
 interface IRequest {
   UserID: string;
@@ -25,6 +26,8 @@ export default class CreateService {
       throw new AppErrors('Esse Usuario já exist', 409);
     }
 
+    const redisCache = new RedisCache();
+
     // const hashed = await hash(password, 8);
 
     const usuario = repository.create({
@@ -33,6 +36,8 @@ export default class CreateService {
       UserPassword,
       TpConta,
     });
+
+    await redisCache.invalidation('api-block-USERLIST');
 
     await repository.save(usuario);
 

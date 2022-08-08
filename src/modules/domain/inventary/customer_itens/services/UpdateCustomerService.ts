@@ -2,6 +2,7 @@ import { getCustomRepository } from 'typeorm';
 import CustomerItemRepository from '../../../../data/typeorm/repository/CustomerItemRepository';
 import CustomerItem from '../../../../data/typeorm/entities/CustomerItem';
 import { AppErrors } from '../../../../../shared/errors/AppErrors';
+import RedisCache from '../../../../../shared/cache/Redischace';
 
 interface IRequest {
   itemHash: string;
@@ -27,9 +28,13 @@ export default class UpdateInventaryService {
 
     const invent = await repository.findByHashId(itemHash);
 
+    const redisCache = new RedisCache();
+
     if (!invent) {
       throw new AppErrors('Não existe esse item', 404);
     }
+
+    await redisCache.invalidation('api-block-CUSTOMERITENS');
 
     invent.itemID = itemID ? itemID : invent.itemID;
     invent.displayName = displayName ? displayName : invent.displayName;

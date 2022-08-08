@@ -18,7 +18,7 @@ export default class UserRepository
     return index;
   }
 
-  public async findAll(): Promise<Users[] | undefined> {
+  public async findAll(): Promise<Users[]> {
     const all = this.find({});
 
     return all;

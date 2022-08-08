@@ -27,7 +27,7 @@ export default class InventaryItensRepository
     return index;
   }
 
-  public async findAll(): Promise<InventaryItens[] | undefined> {
+  public async findAll(): Promise<InventaryItens[]> {
     const all = this.find({});
 
     return all;

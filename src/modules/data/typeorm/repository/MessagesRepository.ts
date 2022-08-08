@@ -24,7 +24,7 @@ export default class MessagesRepository
     return index;
   }
 
-  public async findAll(): Promise<Messages[] | undefined> {
+  public async findAll(): Promise<Messages[]> {
     const all = this.find({});
 
     return all;

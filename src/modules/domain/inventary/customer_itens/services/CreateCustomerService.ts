@@ -2,6 +2,7 @@ import { getCustomRepository } from 'typeorm';
 import CustomerItemRepository from '../../../../data/typeorm/repository/CustomerItemRepository';
 import { AppErrors } from '../../../../../shared/errors/AppErrors';
 import CustomerItem from '../../../../data/typeorm/entities/CustomerItem';
+import RedisCache from '../../../../../shared/cache/Redischace';
 
 interface IRequest {
   itemHash: string;
@@ -31,6 +32,8 @@ export default class CreateService {
       throw new AppErrors('Existe esse item', 409);
     }
 
+    const redisCache = new RedisCache();
+
     const result = repository.create({
       itemHash,
       itemID,
@@ -40,6 +43,8 @@ export default class CreateService {
       stackable,
       category,
     });
+
+    await redisCache.invalidation('api-block-CUSTOMERITENS');
 
     await repository.save(result);
 

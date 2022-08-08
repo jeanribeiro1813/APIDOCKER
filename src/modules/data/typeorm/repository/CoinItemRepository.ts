@@ -23,7 +23,7 @@ export default class CustomerItemRepository
     return index;
   }
 
-  public async findAll(): Promise<CoinItem[] | undefined> {
+  public async findAll(): Promise<CoinItem[]> {
     const all = this.find({});
 
     return all;

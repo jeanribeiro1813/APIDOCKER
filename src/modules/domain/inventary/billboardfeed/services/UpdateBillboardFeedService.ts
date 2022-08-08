@@ -2,6 +2,7 @@ import { getCustomRepository } from 'typeorm';
 import BillboardFeedRepository from '../../../../data/typeorm/repository/BillboardFeedRepository';
 import { AppErrors } from '../../../../../shared/errors/AppErrors';
 import BillboardFeed from '../../../../data/typeorm/entities/BillboardFeed';
+import RedisCache from '../../../../../shared/cache/Redischace';
 
 interface IRequest {
   IdBillBoardFeed: string;
@@ -23,9 +24,13 @@ export default class UpdateInventaryService {
 
     const invent = await repository.findById(IdBillBoardFeed);
 
+    const redisCache = new RedisCache();
+
     if (!invent) {
       throw new AppErrors('Não existe esse item', 404);
     }
+
+    await redisCache.invalidation('api-block-BILLBOARDFEED');
 
     invent.UserId = UserId ? UserId : invent.UserId;
     invent.imageProfile = imageProfile ? imageProfile : invent.imageProfile;

@@ -2,6 +2,7 @@ import { getCustomRepository } from 'typeorm';
 import BillboardFeedRepository from '../../../../data/typeorm/repository/BillboardFeedRepository';
 import { AppErrors } from '../../../../../shared/errors/AppErrors';
 import BillboardFeed from '../../../../data/typeorm/entities/BillboardFeed';
+import RedisCache from '../../../../../shared/cache/Redischace';
 
 interface IRequest {
   IdBillBoardFeed: string;
@@ -27,12 +28,16 @@ export default class CreateService {
       throw new AppErrors('Não é um ID de Usuario', 409);
     }
 
+    const redisCache = new RedisCache();
+
     const result = repository.create({
       UserId,
       imageProfile,
       Isimage,
       Url,
     });
+
+    await redisCache.invalidation('api-block-BILLBOARDFEED');
 
     await repository.save(result);
 

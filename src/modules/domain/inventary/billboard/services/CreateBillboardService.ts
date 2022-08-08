@@ -2,6 +2,7 @@ import { getCustomRepository } from 'typeorm';
 import BillboardRepository from '../../../../data/typeorm/repository/BillboardRepository';
 import { AppErrors } from '../../../../../shared/errors/AppErrors';
 import Billboard from '../../../../data/typeorm/entities/Billboard';
+import RedisCache from '../../../../../shared/cache/Redischace';
 
 interface IRequest {
   BillboardID: string;
@@ -29,6 +30,8 @@ export default class CreateService {
       throw new AppErrors('Existe esse item', 409);
     }
 
+    const redisCache = new RedisCache();
+
     const result = repository.create({
       BillboardID,
       width,
@@ -37,6 +40,8 @@ export default class CreateService {
       vectory,
       vectorz,
     });
+
+    await redisCache.invalidation('api-block-BILLBOARD');
 
     await repository.save(result);
 

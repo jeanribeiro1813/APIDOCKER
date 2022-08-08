@@ -2,6 +2,7 @@ import { getCustomRepository } from 'typeorm';
 import CoinItemRepository from '../../../../data/typeorm/repository/CoinItemRepository';
 import { AppErrors } from '../../../../../shared/errors/AppErrors';
 import CoinItem from '../../../../data/typeorm/entities/CoinItem';
+import RedisCache from '../../../../../shared/cache/Redischace';
 
 interface IRequest {
   itemHash: string;
@@ -31,6 +32,8 @@ export default class CreateService {
       throw new AppErrors('Existe esse item', 409);
     }
 
+    const redisCache = new RedisCache();
+
     const result = repository.create({
       itemHash,
       itemID,
@@ -40,6 +43,8 @@ export default class CreateService {
       stackable,
       category,
     });
+
+    await redisCache.invalidation('api-block-COIN');
 
     await repository.save(result);
 

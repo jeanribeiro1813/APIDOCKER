@@ -16,6 +16,7 @@ services:
       - "3225:3225"
     depends_on:
      - db
+     - redis
 
 
   db:
@@ -32,6 +33,14 @@ services:
       - POSTGRES_DB=apiblock
     networks:
       - node-network
+
+  redis:
+
+    image: 'bitnami/redis:latest'
+    container_name: apivendas-redis
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+
 
 
 networks:

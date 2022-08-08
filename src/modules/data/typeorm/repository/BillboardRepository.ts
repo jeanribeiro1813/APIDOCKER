@@ -13,7 +13,7 @@ export default class BillboardRepository
     return index;
   }
 
-  public async findAll(): Promise<Billboard[] | undefined> {
+  public async findAll(): Promise<Billboard[]> {
     const all = this.find({});
 
     return all;

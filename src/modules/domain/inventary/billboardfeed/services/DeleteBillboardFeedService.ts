@@ -1,6 +1,7 @@
 import { getCustomRepository } from 'typeorm';
 import BillboardFeedRepository from '../../../../data/typeorm/repository/BillboardFeedRepository';
 import { AppErrors } from '../../../../../shared/errors/AppErrors';
+import RedisCache from '../../../../../shared/cache/Redischace';
 
 interface IRequest {
   IdBillBoardFeed: string;
@@ -15,6 +16,10 @@ export default class DeleteInventary {
     if (!inventary) {
       throw new AppErrors('Não existe esse item', 404);
     }
+
+    const redisCache = new RedisCache();
+
+    await redisCache.invalidation('api-block-BILLBOARDFEED');
 
     await repository.remove(inventary);
   }
