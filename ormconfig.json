@@ -3,7 +3,7 @@
   "host": "localhost",
   "port": 5432,
   "username": "postgres",
-  "password": "132887",
+  "password": "docker",
   "database": "apiblock",
   "$schema": "public",
   "entities": [
