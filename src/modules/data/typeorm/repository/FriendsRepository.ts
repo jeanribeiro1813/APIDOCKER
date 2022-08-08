@@ -25,7 +25,11 @@ export default class FriendsRepository
     return index;
   }
 
+<<<<<<< HEAD
   public async findAll(): Promise<Friends[]> {
+=======
+  public async findAll(): Promise<Friends[] | undefined> {
+>>>>>>> develop
     const all = this.find({});
 
     return all;

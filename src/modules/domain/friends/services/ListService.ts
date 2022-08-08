@@ -1,7 +1,10 @@
 import { getCustomRepository } from 'typeorm';
 import FriendsRepository from '../../../data/typeorm/repository/FriendsRepository';
 import Friends from '../../../data/typeorm/entities/Friends';
+<<<<<<< HEAD
 import RedisCache from '../../../../shared/cache/Redischace';
+=======
+>>>>>>> develop
 
 export default class ListInventaryService {
   public async list(): Promise<Friends[] | undefined> {
@@ -9,6 +12,7 @@ export default class ListInventaryService {
 
     const result = await repository.findAll();
 
+<<<<<<< HEAD
     const redisCache = new RedisCache();
 
     let fri = await redisCache.recover<Friends[]>('api-block-FRIENDS');
@@ -19,6 +23,8 @@ export default class ListInventaryService {
       await redisCache.save('api-block-FRIENDS', fri);
     }
 
+=======
+>>>>>>> develop
     return result;
   }
 }
