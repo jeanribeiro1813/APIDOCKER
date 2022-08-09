@@ -3,17 +3,17 @@
   "host": "localhost",
   "port": 5432,
   "username": "postgres",
-  "password": "docker",
+  "password": "132887",
   "database": "apiblock",
   "$schema": "public",
   "entities": [
-    "./dist/modules/data/typeorm/entities/*.js"
+    "./src/modules/data/typeorm/entities/*.ts"
 ],
   "migrations":[
-    "./dist/shared/infra/typeorm/migrations/*.js"
+    "./src/shared/infra/typeorm/migrations/*.ts"
   ],
   "cli":{
-    "migrationsDir": "./dist/shared/infra/typeorm/migrations"
+    "migrationsDir": "./src/shared/infra/typeorm/migrations"
   }
 
 }
