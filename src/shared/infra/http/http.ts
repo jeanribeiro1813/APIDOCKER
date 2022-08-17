@@ -10,12 +10,15 @@ import '../../../modules/data/typeorm';
 import http from 'http';
 import { Server } from 'socket.io';
 import path from 'path';
+import rateLimiter from '../../middlewares/rateLimiter';
 
 const app = express();
 
 app.use(cors());
 
 app.use(express.json());
+
+// app.use(rateLimiter);
 
 app.use(routes);
 
