@@ -1,9 +1,9 @@
 {
   "type": "postgres",
-  "host": "localhost",
+  "host": "167.99.145.230",
   "port": 5432,
   "username": "postgres",
-  "password": "132887",
+  "password": "docker",
   "database": "apiblock",
   "$schema": "public",
   "entities": [
