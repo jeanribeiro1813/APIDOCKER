@@ -1,27 +1,33 @@
 import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
-export class CreateTokenUsers1656973712925 implements MigrationInterface {
+export class CreateTableEmail1660651680470 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'UserTokens',
+        name: 'Email',
         columns: [
           {
-            name: 'IdToken',
+            name: 'id',
             type: 'uuid',
             isPrimary: true,
             generationStrategy: 'uuid',
             default: 'uuid_generate_v4()',
           },
           {
-            name: 'Token',
+            name: 'id_rementente',
             type: 'uuid',
-            generationStrategy: 'uuid',
-            default: 'uuid_generate_v4()',
           },
           {
-            name: 'UserIDToken',
+            name: 'id_destinatario',
             type: 'uuid',
+          },
+          {
+            name: 'titulo_mensagem',
+            type: 'varchar',
+          },
+          {
+            name: 'data',
+            type: 'date',
           },
           {
             name: 'created_at',
@@ -36,10 +42,18 @@ export class CreateTokenUsers1656973712925 implements MigrationInterface {
         ],
         foreignKeys: [
           {
-            name: 'TokenUser',
+            name: 'IdremententeToken',
             referencedTableName: 'User',
             referencedColumnNames: ['UserID'],
-            columnNames: ['UserIDToken'],
+            columnNames: ['id_rementente'],
+            onDelete: 'CASCADE',
+            onUpdate: 'CASCADE',
+          },
+          {
+            name: 'IddestinatarioToken',
+            referencedTableName: 'User',
+            referencedColumnNames: ['UserID'],
+            columnNames: ['id_destinatario'],
             onDelete: 'CASCADE',
             onUpdate: 'CASCADE',
           },
@@ -49,6 +63,6 @@ export class CreateTokenUsers1656973712925 implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('UserTokens');
+    await queryRunner.dropTable('Email');
   }
 }
