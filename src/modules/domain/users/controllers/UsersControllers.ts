@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import CreateServiceUsers from '../services/CreateUsersService';
 import ListarAllUsers from '../services/ListarServiceUsers';
+import UpdateUsersService from '../services/UpdateUsersService';
 import DeleteUsersService from '../services/DeleteUsersService';
 import { IndexServiceUsers } from '../services/IndexServiceUsers';
 
@@ -56,4 +57,32 @@ export default class UsersControllers {
 
     return res.json(result_id);
   }
+  // public async update(req: Request, res: Response) {
+
+  //   const { UserID } = req.params;
+
+  //   const {
+  //     UserEmail,
+  //     UserPassword,
+  //     TpConta,
+  //     IsPunishing,
+  //     PunishingType,
+  //   } = req.body;
+
+  //   const result = new UpdateUsersService();
+
+  //   await result.criar()
+
+  //   const punish = new CreatePunish();
+
+  //   const punindo = {
+  //     UserID,
+  //     IsPunishing,
+  //   };
+
+  //   if (user.IsPunishing === true) {
+  //     await punish.criar(punindo);
+  //   }
+
+  // }
 }
