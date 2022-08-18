@@ -35,6 +35,13 @@ export default class CreateSession {
       throw new AppErrors('Incorrect email/password', 404);
     }
 
+    if (user.IsPunishing !== false) {
+      throw new AppErrors(
+        'Você foi punido da plataforma , entre em contado com o ADM',
+        404,
+      );
+    }
+
     const token = sign(
       {
         id: user.UserID,
