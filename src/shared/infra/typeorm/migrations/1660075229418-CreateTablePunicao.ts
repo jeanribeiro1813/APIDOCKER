@@ -4,7 +4,7 @@ export class CreateTablePunicao1660075229418 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'Punicao',
+        name: 'Punishing',
         columns: [
           {
             name: 'Id',
@@ -19,16 +19,16 @@ export class CreateTablePunicao1660075229418 implements MigrationInterface {
             isNullable: true,
           },
           {
-            name: 'tipo_punicao',
-            type: 'varchar',
+            name: 'IsPunishing',
+            type: 'boolean',
           },
           {
-            name: 'tempo_punicao',
-            type: 'varchar',
+            name: 'TimePunishing',
+            type: 'date',
           },
           {
-            name: 'status_punicao',
-            type: 'varchar',
+            name: 'Describe',
+            type: 'text',
           },
           {
             name: 'created_at',
@@ -50,12 +50,20 @@ export class CreateTablePunicao1660075229418 implements MigrationInterface {
             onDelete: 'CASCADE',
             onUpdate: 'CASCADE',
           },
+          // {
+          //   name: 'UserPunishing',
+          //   referencedTableName: 'User',
+          //   referencedColumnNames: ['IsPunishing'],
+          //   columnNames: ['IsPunishing'],
+          //   onDelete: 'CASCADE',
+          //   onUpdate: 'CASCADE',
+          // },
         ],
       }),
     );
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('Punicao');
+    await queryRunner.dropTable('Punishing');
   }
 }

@@ -6,8 +6,8 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
-@Entity('Punicao')
-class Punicao {
+@Entity('Punishing')
+class Punish {
   @PrimaryColumn('uuid')
   Id!: string;
 
@@ -15,13 +15,13 @@ class Punicao {
   IdUser!: string;
 
   @Column()
-  tipo_punicao!: string;
+  IsPunishing!: boolean;
 
   @Column()
-  tempo_punicao!: string;
+  TimePunishing!: string;
 
   @Column()
-  status_punicao!: string;
+  Describe!: string;
 
   @CreateDateColumn()
   created_at!: Date;
@@ -30,4 +30,4 @@ class Punicao {
   updated_at!: Date;
 }
 
-export default Punicao;
+export default Punish;

@@ -1,5 +1,5 @@
 import { getCustomRepository } from 'typeorm';
-import PunicaoRepository from '../../../data/typeorm/repository/PunicaoRepository';
+import PunishRepository from '../../../data/typeorm/repository/PunishRepository';
 import { AppErrors } from '../../../../shared/errors/AppErrors';
 import RedisCache from '../../../../shared/cache/Redischace';
 
@@ -9,7 +9,7 @@ interface IRequest {
 
 export default class DeleteInventary {
   public async delete({ Id }: IRequest): Promise<void> {
-    const repository = getCustomRepository(PunicaoRepository);
+    const repository = getCustomRepository(PunishRepository);
 
     const inventary = await repository.findOne({ Id });
 

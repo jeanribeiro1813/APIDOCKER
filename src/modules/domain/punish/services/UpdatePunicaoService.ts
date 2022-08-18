@@ -1,26 +1,26 @@
 import { getCustomRepository } from 'typeorm';
-import PunicaoRepository from '../../../data/typeorm/repository/PunicaoRepository';
+import PunishRepository from '../../../data/typeorm/repository/PunishRepository';
 import { AppErrors } from '../../../../shared/errors/AppErrors';
-import Punicao from '../../../data/typeorm/entities/Punicao';
+import Punish from '../../../data/typeorm/entities/Punish';
 import RedisCache from '../../../../shared/cache/Redischace';
 
 interface IRequest {
   Id: string;
   IdUser: string;
-  tipo_punicao: string;
-  tempo_punicao: string;
-  status_punicao: string;
+  IsPunishing: boolean;
+  TimePunishing: string;
+  Describe: string;
 }
 
 export default class UpdateInventaryService {
   public async update({
     Id,
     IdUser,
-    tipo_punicao,
-    tempo_punicao,
-    status_punicao,
-  }: IRequest): Promise<Punicao | AppErrors> {
-    const repository = getCustomRepository(PunicaoRepository);
+    IsPunishing,
+    TimePunishing,
+    Describe,
+  }: IRequest): Promise<Punish | AppErrors> {
+    const repository = getCustomRepository(PunishRepository);
 
     const invent = await repository.findById(Id);
 
@@ -33,11 +33,9 @@ export default class UpdateInventaryService {
     await redisCache.invalidation('api-block-PUNICAO');
 
     invent.IdUser = IdUser ? IdUser : invent.IdUser;
-    invent.tipo_punicao = tipo_punicao ? tipo_punicao : invent.tipo_punicao;
-    invent.tempo_punicao = tempo_punicao ? tempo_punicao : invent.tempo_punicao;
-    invent.status_punicao = status_punicao
-      ? status_punicao
-      : invent.status_punicao;
+    invent.IsPunishing = IsPunishing ? IsPunishing : invent.IsPunishing;
+    invent.TimePunishing = TimePunishing ? TimePunishing : invent.TimePunishing;
+    invent.Describe = Describe ? Describe : invent.Describe;
 
     const result = await repository.save(invent);
 

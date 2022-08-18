@@ -1,24 +1,24 @@
 import { getCustomRepository } from 'typeorm';
-import PunicaoRepository from '../../../data/typeorm/repository/PunicaoRepository';
+import PunicaoRepository from '../../../data/typeorm/repository/PunishRepository';
 import { AppErrors } from '../../../../shared/errors/AppErrors';
-import Punicao from '../../../data/typeorm/entities/Punicao';
+import Punicao from '../../../data/typeorm/entities/Punish';
 import RedisCache from '../../../../shared/cache/Redischace';
 
 interface IRequest {
   Id: string;
   IdUser: string;
-  tipo_punicao: string;
-  tempo_punicao: string;
-  status_punicao: string;
+  IsPunishing: boolean;
+  TimePunishing: string;
+  Describe: string;
 }
 
 export default class CreateService {
   public async criar({
     Id,
     IdUser,
-    tipo_punicao,
-    tempo_punicao,
-    status_punicao,
+    IsPunishing,
+    TimePunishing,
+    Describe,
   }: IRequest): Promise<Punicao | undefined> {
     const repository = getCustomRepository(PunicaoRepository);
 
@@ -33,9 +33,9 @@ export default class CreateService {
     const result = repository.create({
       Id,
       IdUser,
-      tipo_punicao,
-      tempo_punicao,
-      status_punicao,
+      IsPunishing,
+      TimePunishing,
+      Describe,
     });
 
     await redisCache.invalidation('api-block-PUNICAO');

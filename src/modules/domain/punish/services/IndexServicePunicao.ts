@@ -1,15 +1,15 @@
 import { getCustomRepository } from 'typeorm';
-import PunicaoRepository from '../../../data/typeorm/repository/PunicaoRepository';
+import PunishRepository from '../../../data/typeorm/repository/PunishRepository';
 import { AppErrors } from '../../../../shared/errors/AppErrors';
-import Punicao from '../../../data/typeorm/entities/Punicao';
+import Punish from '../../../data/typeorm/entities/Punish';
 
 interface IRequest {
   Id: string;
 }
 
 export default class IndexServiceUsers {
-  public async index({ Id }: IRequest): Promise<Punicao | AppErrors> {
-    const repository = getCustomRepository(PunicaoRepository);
+  public async index({ Id }: IRequest): Promise<Punish | AppErrors> {
+    const repository = getCustomRepository(PunishRepository);
 
     const result = await repository.findById(Id);
 

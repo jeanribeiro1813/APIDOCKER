@@ -1,10 +1,10 @@
 import { Router } from 'express';
-import PunicaoControllers from '../controllers/PunicaoControllers';
+import PunishControllers from '../controllers/PunishControllers';
 import { celebrate, Joi, Segments } from 'celebrate';
 
 const router = Router();
 
-const punicaoController = new PunicaoControllers();
+const punicaoController = new PunishControllers();
 
 router.post('/create', punicaoController.create);
 
