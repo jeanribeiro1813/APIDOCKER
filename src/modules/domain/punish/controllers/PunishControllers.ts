@@ -1,23 +1,22 @@
 import { Request, Response } from 'express';
 import ListPunicaoService from '../services/ListPunicaoService';
-import CreatePunicaoService from '../services/CreatePunicaoService';
+import CreatePunicaoService from '../services/CreatePunishService';
 import UpdatePunicaoService from '../services/UpdatePunicaoService';
-import DeletePunicaoService from '../services/DeletePunicaoService';
+import DeletePunicaoService from '../services/DeletePunishService';
 import IndexServicePunicao from '../services/IndexServicePunicao';
 
 export default class UsersControllers {
   public async create(req: Request, res: Response) {
-    const { Id, IdUser, tipo_punicao, tempo_punicao, status_punicao } =
-      req.body;
+    const { Id, IdUser, IsPunishing, TimePunishing, Describe } = req.body;
 
     const result = new CreatePunicaoService();
 
     const criado = await result.criar({
       Id,
       IdUser,
-      tipo_punicao,
-      tempo_punicao,
-      status_punicao,
+      IsPunishing,
+      TimePunishing,
+      Describe,
     });
 
     return res.status(200).json(criado);
@@ -54,16 +53,16 @@ export default class UsersControllers {
   public async update(req: Request, res: Response) {
     const { Id } = req.params;
 
-    const { IdUser, tipo_punicao, tempo_punicao, status_punicao } = req.body;
+    const { IdUser, IsPunishing, TimePunishing, Describe } = req.body;
 
     const result = new UpdatePunicaoService();
 
     const criado = await result.update({
       Id,
       IdUser,
-      tipo_punicao,
-      tempo_punicao,
-      status_punicao,
+      IsPunishing,
+      TimePunishing,
+      Describe,
     });
 
     return res.status(200).json(criado);

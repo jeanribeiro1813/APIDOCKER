@@ -10,7 +10,7 @@ import billboardRouter from '../../../../modules/domain/inventary/billboard/rout
 import billboardfeedRouter from '../../../../modules/domain/inventary/billboardfeed/router/BillboardFeedRouter';
 import messages from '../../../../modules/domain/messages/router/MessageRouter';
 import friends from '../../../../modules/domain/friends/router/FriendsRouter';
-import punicao from '../../../../modules/domain/punicao/router/PunicaoRouter';
+import punish from '../../../../modules/domain/punish/router/PunishRouter';
 import fichas from '../../../../modules/domain/fichas/router/FichasRouter';
 
 const router = Router();
@@ -28,6 +28,6 @@ router.use('/billboardfeed', billboardfeedRouter);
 router.use('/messages', messages);
 router.use('/friends', friends);
 router.use('/fichas', fichas);
-router.use('/punicao', punicao);
+router.use('/punish', punish);
 
 export default router;

@@ -9,6 +9,8 @@ interface IRequest {
   UserEmail: string;
   UserPassword: string;
   TpConta: string;
+  IsPunishing: boolean;
+  PunishingType: boolean;
 }
 
 export default class CreateService {
@@ -17,6 +19,8 @@ export default class CreateService {
     UserEmail,
     UserPassword,
     TpConta,
+    IsPunishing,
+    PunishingType,
   }: IRequest): Promise<Users | undefined> {
     const repository = getCustomRepository(UsersRepository);
 
@@ -35,6 +39,8 @@ export default class CreateService {
       UserEmail,
       UserPassword,
       TpConta,
+      IsPunishing,
+      PunishingType,
     });
 
     await redisCache.invalidation('api-block-USERLIST');

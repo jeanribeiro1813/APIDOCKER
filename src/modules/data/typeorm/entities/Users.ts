@@ -20,6 +20,12 @@ class User {
   @Column()
   TpConta!: string;
 
+  @Column()
+  IsPunishing!: boolean;
+
+  @Column()
+  PunishingType!: boolean;
+
   @CreateDateColumn()
   created_at!: Date;
 

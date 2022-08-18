@@ -17,6 +17,8 @@ router.post(
       UserEmail: Joi.string().required(),
       UserPassword: Joi.string().required(),
       TpConta: Joi.string().required(),
+      IsPunishing: Joi.string().required(),
+      PunishingType: Joi.string().optional(),
     },
   }),
   userController.create,
