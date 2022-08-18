@@ -22,9 +22,9 @@ export default class CreateService {
   }: IRequest): Promise<Punicao | undefined> {
     const repository = getCustomRepository(PunicaoRepository);
 
-    const inventary = await repository.findById(Id);
+    const punicao = await repository.findById(Id);
 
-    if (inventary) {
+    if (punicao) {
       throw new AppErrors('Existe esse item', 409);
     }
 
