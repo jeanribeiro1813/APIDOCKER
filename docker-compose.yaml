@@ -29,7 +29,7 @@ services:
     volumes:
       - .docker/dbdata:/var/lib/postgresql/data
     environment:
-      - POSTGRES_PASSWORD=56d10337f4e33cb20c5eef093b8f1632b7c844a1
+      - POSTGRES_PASSWORD=docker
       - POSTGRES_DB=apiblock
     networks:
       - node-network
