@@ -18,9 +18,9 @@ app.use(cors());
 
 app.use(express.json());
 
-// app.use(rateLimiter);
-
 app.use(routes);
+
+app.use(rateLimiter);
 
 app.use(errors());
 
