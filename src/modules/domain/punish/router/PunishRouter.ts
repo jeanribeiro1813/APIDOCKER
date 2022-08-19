@@ -30,6 +30,16 @@ router.get(
   punicaoController.index,
 );
 
+router.get(
+  '/user/:IdUser',
+  celebrate({
+    [Segments.PARAMS]: {
+      IdUser: Joi.string().required(),
+    },
+  }),
+  punicaoController.indexuser,
+);
+
 router.delete(
   '/delete/:Id',
   celebrate({
